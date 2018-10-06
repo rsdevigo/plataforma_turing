@@ -1,22 +1,19 @@
 {
-  "name": "reactexpress",
+  "name": "noticias",
   "version": "1.0.0",
-  "description": "Starter kit for creating React and Express apps",
-  "main": "server.js",
+  "description": "",
+  "main": "app.js",
   "scripts": {
-    "client-install": "cd client && npm install",
-    "start": "node server.js",
-    "server": "nodemon server.js",
-    "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "MIT",
-  "devDependencies": {
-    "nodemon": "^1.14.6"
-  },
+  "author": "Gabriel F. Borges",
+  "license": "ISC",
   "dependencies": {
-    "concurrently": "^3.5.1",
-    "express": "^4.16.2"
+    "body-parser": "^1.18.2",
+    "consign": "^0.1.6",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "express-validator": "^5.1.2",
+    "mysql": "^2.15.0"
   }
 }
