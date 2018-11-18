@@ -1,0 +1,42 @@
+<h2 class="page-header">Register</h2>
+{{#if user}}
+        <div class="alert alert-danger">Este nome de usuário já está sendo utilizado.</div> 
+{{/if}}
+{{#if mail}}
+        <div class="alert alert-danger">Esse email já está sendo utilizado.</div> 
+{{/if}} 
+{{#if errors}}
+      {{#each errors}}
+        <div class="alert alert-danger">{{msg}}</div>
+      {{/each}}
+{{/if}}
+<form method="post" action="/users/register">
+   <div class="form-group">
+    <label>Nome Completo</label>
+    <input type="text" class="form-control" placeholder="Digite o seu nome" name="name">
+  </div>
+  <div class="form-group">
+    <label>Usuário</label>
+    <input type="text" class="form-control" placeholder="Você usará este nome de usuário para logar no sistema" name="username">
+  </div>
+   <div class="form-group">
+    <label>Email</label>
+    <input type="email" class="form-control" placeholder="Digite seu email" name="email">
+  </div>
+  <div class="form-group">
+    <label>Senha</label>
+    <input type="password" class="form-control" placeholder="Digite sua senha" name="password">
+  </div>
+  <div class="form-group">
+    <label>Confirme a senha</label>
+    <input type="password" class="form-control" placeholder="Confirme a senha" name="password2">
+  </div>
+	<div class="form-group">
+		<label>Defina que tipo de usuário é você</label>
+		<select class="form-control" name="categoria">
+			<option value="0">Estudante</option>
+			<option value="1">Empresa</option>
+		</select>
+	</div>
+  <button type="submit" class="btn btn-default">Cadastrar</button>
+</form>

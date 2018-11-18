@@ -1,0 +1,37 @@
+{
+  "name": "plataformaturing",
+  "version": "1.0.0",
+  "description": "estagio",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "*",
+    "body-parser": "*",
+    "connect-flash": "*",
+    "connect-mongo": "^2.0.1",
+    "cookie-parser": "^1.4.1",
+    "express": "*",
+    "express-handlebars": "*",
+    "express-messages": "*",
+    "express-session": "*",
+    "express-validator": "*",
+    "mongodb": "*",
+    "mongoose": "*",
+    "passport": "*",
+    "passport-http": "*",
+    "passport-local": "*",
+    "session-storage": "^1.0.1",
+    "sessionstorage": "^0.1.0"
+  },
+  "devDependencies": {
+    "mock-local-storage": "^1.1.7"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "mock-local-storage"
+  }
+}
