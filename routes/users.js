@@ -4,6 +4,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 var User = require('../models/user');
+var Matriz = require('../models/matriz');
 
 
 
@@ -119,4 +120,11 @@ router.get('/logout', function (req, res) {
 	res.redirect('/users/login');
 });
 
+router.post('/save', function(req, res){
+	res.send('testaaaa');
+});
+
+router.get('/save', function (req, res) {
+  res.send('teste');
+})
 module.exports = router;

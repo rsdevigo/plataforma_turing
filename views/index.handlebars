@@ -1,2 +1,18 @@
  <h2 class="page-header">Dashboard</h2>
 <p>Bem vindo ao seu dashboard. Aqui você preencherá seus níveis de competência em cada uma das habilidades. Preencha com sinceridade pois os dados serão usados para garantir uma vaga para seu estágio, e não queremos decepcionar ninguém, não é mesmo?</p>  
+
+<form method="get" action="/save" class="">
+  <div class="form-group">
+    <label>Habilidade 1</label>
+    <input type="number" min="0" max="100" class="form-control" name="habilidade1" placeholder="Habilidade 1">
+  </div>
+  <div class="form-group">
+    <label>Habilidade 2</label>
+    <input type="number" min="0" max="100" class="form-control" name="habilidade2" placeholder="Habilidade 2">
+  </div>
+  <div class="form-group">
+    <label>Habilidade 3</label>
+    <input type="number" min="0" max="100" class="form-control" name="habilidade3" placeholder="Habilidade 3">
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>

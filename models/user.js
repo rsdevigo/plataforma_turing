@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 
-// User Schema do Mongoose
 var UserSchema = mongoose.Schema({
 	username: {
 		type: String,
@@ -18,9 +17,6 @@ var UserSchema = mongoose.Schema({
 	},
 	categoria: {
 		type: String
-		//0 pra estudante
-		//1 pra empresa
-		//vamos fazer admin?? se for, ele é 2
 	}
 });
 
@@ -37,6 +33,7 @@ module.exports.createUser = function(newUser, callback){
 
 module.exports.getUserByUsername = function(username, callback){
 	var query = {username: username};
+
 	User.findOne(query, callback);
 }
 
