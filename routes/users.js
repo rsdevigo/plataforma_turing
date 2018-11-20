@@ -4,9 +4,6 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 var User = require('../models/user');
-var Matriz = require('../models/matriz');
-
-
 
 // Registrar
 router.get('/register', function (req, res) {
@@ -82,7 +79,7 @@ passport.use(new LocalStrategy(
 		User.getUserByUsername(username, function (err, user) {
 			if (err) throw err;
 			if (!user) {
-				return done(null, false, { message: 'Unknown User' });
+				return done(null, false, { message: 'Usuário inválido' });
 			}
 
 			User.comparePassword(password, user.password, function (err, isMatch) {
@@ -90,7 +87,7 @@ passport.use(new LocalStrategy(
 				if (isMatch) {
 					return done(null, user);
 				} else {
-					return done(null, false, { message: 'Invalid password' });
+					return done(null, false, { message: 'Senha inválida' });
 				}
 			});
 		});
@@ -107,39 +104,32 @@ passport.deserializeUser(function (id, done) {
 });
 
 router.post('/login', (req, res, next) => {
-  console.log('Inside POST /login callback')
-  passport.authenticate('local', (err, user, info) => {
-    console.log('Inside passport.authenticate() callback');
-    console.log(`req.session.passport: ${JSON.stringify(req.session.passport)}`)
-    console.log(`req.user: ${JSON.stringify(req.user)}`)
+  passport.authenticate('local', { successRedirect: '/', failureRedirect: '/users/login', failureFlash: true }, (err, user, info) => {
+    console.log(`req.session.passport: ${JSON.stringify(req.session.passport)}`);
+    console.log(`req.user: ${JSON.stringify(req.user)}`);
     req.login(user, (err) => {
-      console.log('Inside req.login() callback')
-      console.log(`req.session.passport: ${JSON.stringify(req.session.passport)}`)
-      console.log(`req.user: ${JSON.stringify(req.user)}`)
+			console.log(`req.session.passport: ${JSON.stringify(req.session.passport)}`);
+			var xa =	JSON.stringify(req.user);
+			console.log(xa);
+			
       return res.redirect('/');
-    })
+		})
   })(req, res, next);
 })
 
-router.post('/login',
-	passport.authenticate('local', { successRedirect: '/', failureRedirect: '/users/login', failureFlash: true }),
-	function (req, res) {
-		res.redirect('/');
-	});
+// router.post('/login',
+// 	passport.authenticate('local', { successRedirect: '/', failureRedirect: '/users/login', failureFlash: true }),
+// 	function (req, res) {
+// 		res.redirect('/');
+// 	});
 
 router.get('/logout', function (req, res) {
 	req.logout();
 
-	req.flash('success_msg', 'You are logged out');
+	req.flash('success_msg', 'Você deslogou com sucesso');
 
 	res.redirect('/users/login');
 });
 
-router.post('/save', function(req, res){
-	res.send('testaaaa');
-});
 
-router.get('/save', function (req, res) {
-  res.send('teste');
-})
 module.exports = router;

@@ -14,7 +14,7 @@ var FileStore = require('session-file-store')(session);
 var uuid = require('uuid/v4');
 
 
-mongoose.connect('mongodb://localhost/loginapp');
+mongoose.connect('mongodb://localhost/plataforma_turing');
 var db = mongoose.connection;
 
 var routes = require('./routes/index');
@@ -38,12 +38,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Express Session
 app.use(session({
-  // genid: (req) => {
-  //   console.log('Inside session middleware genid function')
-  //   console.log(`Request object sessionID from client: ${req.sessionID}`)
-  //   return uuid() // use UUIDs for session IDs
-  // },
-  // store: new FileStore(),
+  genid: (req) => {
+    console.log(`Request object sessionID from client: ${req.sessionID}`)
+    return uuid()
+  },
+  store: new FileStore(),
   secret: 'secret',
   resave: true,
   saveUninitialized: true
