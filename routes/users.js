@@ -69,7 +69,7 @@ router.post('/register', function (req, res) {
 						if (err) throw err;
 						console.log(user);
 					});
-         	req.flash('success_msg', 'You are registered and can now login');
+         	req.flash('success_msg', 'Você está registrado e já pode logar');
 					res.redirect('/users/login');
 				}
 			});
@@ -105,6 +105,21 @@ passport.deserializeUser(function (id, done) {
 		done(err, user);
 	});
 });
+
+router.post('/login', (req, res, next) => {
+  console.log('Inside POST /login callback')
+  passport.authenticate('local', (err, user, info) => {
+    console.log('Inside passport.authenticate() callback');
+    console.log(`req.session.passport: ${JSON.stringify(req.session.passport)}`)
+    console.log(`req.user: ${JSON.stringify(req.user)}`)
+    req.login(user, (err) => {
+      console.log('Inside req.login() callback')
+      console.log(`req.session.passport: ${JSON.stringify(req.session.passport)}`)
+      console.log(`req.user: ${JSON.stringify(req.user)}`)
+      return res.redirect('/');
+    })
+  })(req, res, next);
+})
 
 router.post('/login',
 	passport.authenticate('local', { successRedirect: '/', failureRedirect: '/users/login', failureFlash: true }),

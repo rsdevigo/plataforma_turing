@@ -10,6 +10,9 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
+var FileStore = require('session-file-store')(session);
+var uuid = require('uuid/v4');
+
 
 mongoose.connect('mongodb://localhost/loginapp');
 var db = mongoose.connection;
@@ -35,11 +38,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Express Session
 app.use(session({
-    secret: 'secret',
-    saveUninitialized: true,
-		resave: true,
+  // genid: (req) => {
+  //   console.log('Inside session middleware genid function')
+  //   console.log(`Request object sessionID from client: ${req.sessionID}`)
+  //   return uuid() // use UUIDs for session IDs
+  // },
+  // store: new FileStore(),
+  secret: 'secret',
+  resave: true,
+  saveUninitialized: true
 }));
-
 // Passport init
 app.use(passport.initialize());
 app.use(passport.session());
@@ -83,5 +91,5 @@ app.use('/users', users);
 app.set('port', (process.env.PORT || 3000));
 
 app.listen(app.get('port'), function(){
-	console.log('Server started on port '+app.get('port'));
+  console.log('Server started on port '+app.get('port'));
 });
