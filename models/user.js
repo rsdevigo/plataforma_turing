@@ -17,6 +17,35 @@ var UserSchema = mongoose.Schema({
 	},
 	categoria: {
 		type: String
+	},
+	habilidades:{
+		habilidade1:{
+			type:String,
+			competencias:{
+				competencia1:{
+					type:Number
+				},
+				competencia1:{
+					type:Number
+				}
+			}
+		},
+		habilidade2:{
+			type:String,
+			competencias:{
+				competencia1:{
+					type:Number
+				}
+			}
+		},
+		habilidade3:{
+			type:String,
+			competencias:{
+				competencia1:{
+					type:Number
+				}
+			}
+		}
 	}
 });
 
