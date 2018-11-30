@@ -60,7 +60,14 @@ router.post('/register', function (req, res) {
 						email: email,
 						categoria: categoria,
 						username: username,
-						password: password
+						password: password,
+						habilidade1:[{
+							nome:'Inglês',
+							competencia1:[{
+								nome:'Ler',
+								valor:0
+							}]
+						}]
 					});
 					User.createUser(newUser, function (err, user) {
 						if (err) throw err;

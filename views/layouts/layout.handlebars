@@ -7,19 +7,19 @@
 </head>
 <body>
 	<div class="container">
-      <div class="header clearfix">
+      <div class="header clearfix d-flex align-items-center">
         <nav>
-          <ul class="nav nav-pills pull-right">
+          <ul class="nav nav-pills pull-right d-flex align-items-center">
             {{#if user}}
-              <li role="presentation"><a href="/">Edit Dashboard</a></li>
+              <li role="presentation"><a href="/">Editar Dashboard</a></li>
               <li role="presentation"><a href="/users/logout">Logout</a></li>
             {{else}}
               <li role="presentation"><a href="/users/login">Login</a></li>
-              <li role="presentation"><a href="/users/register">Register</a></li>
+              <li role="presentation"><a href="/users/register">Registrar</a></li>
             {{/if}}
           </ul>
         </nav>
-        <h3 class="text-muted">Plataforma Turing</h3>
+        <img src="/imgs/logo.png" style="width:165.2px;height:70px" />
       </div>
 
 

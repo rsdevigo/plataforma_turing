@@ -9,19 +9,13 @@ var Matriz = require('../models/matriz');
 var User = require('../models/user');
 // Get Homepage
 router.get('/', ensureAuthenticated, function(req, res){
-	res.render('index');
-
-			var username = req.user.username;
-			console.log(username);
-			Matriz.getMatrizByUsername(username, function(err, matriz){
-				if(matriz != null){
-					req.body.habilidade1 = matriz.habilidade1;
-					req.body.habilidade2 = matriz.habilidade2;
-					req.body.habilidade3 = matriz.habilidade3;
-				} else {
-					console.log("Nao existe");
-				}
-	});
+	console.log(JSON.stringify(req.user));
+	if(req.user.categoria == 0){
+		res.render('index');
+	} else {
+		res.render('empresa');
+	}
+	
 
 });
 
@@ -67,7 +61,7 @@ router.post('/save', function(req, res){
 		Matriz.createMatriz(newMatriz, function(err, user){
 			if(err) throw err;
 			// req.flash('success_msg','Dados salvos');
-			console.log(JSON.stringify(newMatriz));
+			// console.log(JSON.stringify(newMatriz));
 		});
 	}
 
